@@ -2,10 +2,15 @@
 <html lang="hr">
 <head>
  <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="description" content="XPERIUM d.o.o. - stručnjaci za projektiranje i nadzor u području strojarstva i građevinarstva. Pružamo visokokvalitetne usluge uz korištenje najnovijih BIM tehnologija.">
+ <meta name="theme-color" content="#000000">
+ <meta name="color-scheme" content="light dark">
  <title>XPERIUM d.o.o.</title>
  <link rel="stylesheet" href="style.css">
+ <!-- Modern performance optimizations -->
+ <link rel="dns-prefetch" href="//fonts.googleapis.com">
+ <link rel="preconnect" href="//fonts.googleapis.com" crossorigin>
  <!-- Preload fonta za bolje performanse -->
  <link rel="preload" href="Metropolis-Regular.woff2" as="font" type="font/woff2" crossorigin>
 </head>
@@ -156,30 +161,34 @@
             </div>
 
             <h2>Pošaljite nam poruku</h2>
-            <div class="contact-form-container">
-                <form action="#" method="POST" novalidate>
+            <div class="contact-form-container">                <form action="#" method="POST" novalidate aria-label="Kontakt forma">
                     <div>
                         <label for="ime">Ime i prezime:</label>
                         <input type="text" id="ime" name="ime" required 
                                aria-required="true"
+                               autocomplete="name"
                                oninput="this.setCustomValidity('')">
                     </div>
                     <div>
                         <label for="email">E-mail:</label>
                         <input type="email" id="email" name="email" required 
                                aria-required="true"
+                               autocomplete="email"
                                oninput="this.setCustomValidity('')">
                     </div>
                     <div>
                         <label for="predmet">Predmet:</label>
                         <input type="text" id="predmet" name="predmet" required 
                                aria-required="true"
+                               autocomplete="off"
                                oninput="this.setCustomValidity('')">
                     </div>
                     <div>
                         <label for="poruka">Poruka:</label>
                         <textarea id="poruka" name="poruka" required 
                                  aria-required="true"
+                                 autocomplete="off"
+                                 rows="5"
                                  oninput="this.setCustomValidity('')"></textarea>
                     </div>
                     <div>

@@ -1,3 +1,21 @@
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+/* Improve text rendering */
+html {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 @font-face {
     font-family: 'Metropolis';
     src: url('Metropolis-Regular.woff2') format('woff2'),
@@ -39,6 +57,9 @@ html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: #ccc #fff; 
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body.dark-mode {
@@ -207,6 +228,13 @@ nav a {
     position: relative;
     z-index: 1;
     transition: color 0.3s ease;
+    /* Focus styles for accessibility */
+    outline: none;
+}
+
+nav a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 nav a.active {
@@ -378,20 +406,28 @@ input, textarea {
     font-family: 'Metropolis', sans-serif;
     background-color: #ccc;
     color: #000;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, border 0.3s ease;
     box-sizing: border-box;
+    /* Modern focus styles */
+    outline: none;
+    border: 2px solid transparent;
 }
 
 input:focus, textarea:focus {
     background-color: #e6e6e6;
-    outline: none;
+    border: 2px solid var(--primary-color);
+}
+
+input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 input[type="submit"] {
     background-color: #333;
     color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s ease;
     border: none;
     padding: 15px;
     font-size: 18px;
@@ -399,6 +435,22 @@ input[type="submit"] {
     font-weight: bold;
     border-radius: 10px;
     width: 100%;
+    /* Modern button styles */
+    outline: none;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+    transform: translateY(-1px);
+}
+
+input[type="submit"]:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+input[type="submit"]:active {
+    transform: translateY(0);
 }
 
 input[type="submit"]:hover {
@@ -606,18 +658,39 @@ textarea:focus-visible {
     }
 }
 
-/* Podrška za prefers-reduced-motion */
+/* Modern CSS accessibility and UX improvements */
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
     }
     
-    .theme-toggle,
-    .fade-in,
-    .theme-mask,
-    nav .sliding-selector,
-    input, textarea {
-        transition: none !important;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+    :root {
+        --divider-color: #000;
+        --shadow-color: rgba(0,0,0,1);
+    }
+    
+    body.dark-mode {
+        --divider-color: #fff;
+        --shadow-color: rgba(255,255,255,0.8);
+    }
+}
+
+/* Color scheme support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
     }
 }
 
